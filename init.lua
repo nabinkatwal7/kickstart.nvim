@@ -148,6 +148,15 @@ require('lazy').setup({
   'bluz71/vim-moonfly-colors',
   'marko-cerovac/material.nvim',
   'nvim-lualine/lualine.nvim',
+  'brenoprata10/nvim-highlight-colors',
+  'rafamadriz/friendly-snippets',
+  'sindrets/diffview.nvim',
+  'nvimdev/lspsaga.nvim',
+  'prichrd/netrw.nvim',
+  'windwp/nvim-ts-autotag',
+  'nvim-neo-tree/neo-tree.nvim',
+  'nvim-tree/nvim-web-devicons',
+  'MunifTanjim/nui.nvim',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -904,7 +913,7 @@ local config = {
   },
   sections = {
     -- these are to remove the defaults
-    -- lualine_a = {},
+    lualine_a = {},
     lualine_b = {},
     lualine_y = {},
     lualine_z = {},
@@ -1075,3 +1084,52 @@ ins_right {
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
+
+-- Initialize highlight colors plugin
+vim.opt.termguicolors = true
+require('nvim-highlight-colors').setup {}
+
+-- Initialize friendly snippets
+require('luasnip.loaders.from_vscode').load {}
+
+require('lazy').setup {
+  'nvimdev/lspsaga.nvim',
+  config = function()
+    require('lspsaga').setup {}
+  end,
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter', -- optional
+    'nvim-tree/nvim-web-devicons', -- optional
+  },
+}
+
+-- netrw setup
+require('netrw').setup {
+  -- Put your configuration here, or leave the object empty to take the default
+  -- configuration.
+  icons = {
+    symlink = '', -- Symlink icon (directory and file)
+    directory = '', -- Directory icon
+    file = '', -- File icon
+  },
+  use_devicons = true, -- Uses nvim-web-devicons if true, otherwise use the file icon specified above
+  mappings = {}, -- Custom key mappings
+}
+
+require('nvim-ts-autotag').setup {
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = false, -- Auto close on trailing </
+  },
+  -- Also override individual filetype configs, these take priority.
+  -- Empty by default, useful if one of the "opts" global settings
+  -- doesn't work well in a specific filetype
+  per_filetype = {
+    ['html'] = {
+      enable_close = false,
+    },
+  },
+  did_setup = false,
+}
