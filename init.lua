@@ -806,11 +806,11 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -847,11 +847,11 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<C-s>', ':w<CR>')
 
-vim.cmd [[colorscheme material]]
-vim.g.material_style = 'deep ocean'
-vim.cmd 'highlight Normal guibg=none ctermbg=none'
-vim.cmd 'highlight EndOfBuffer guibg=none ctermbg=none'
-vim.cmd 'highlight NormalFloat guibg=none ctermbg=none'
+vim.cmd [[colorscheme rose-pine]]
+--vim.g.material_style = 'deep ocean'
+--vim.cmd 'highlight Normal guibg=none ctermbg=none'
+--vim.cmd 'highlight EndOfBuffer guibg=none ctermbg=none'
+--vim.cmd 'highlight NormalFloat guibg=none ctermbg=none'
 
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
@@ -1045,15 +1045,7 @@ ins_left {
   },
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {
-  function()
-    return '%='
-  end,
-}
-
-ins_left {
+ins_right {
   -- Lsp server name .
   function()
     local msg = 'No Active Lsp'
@@ -1090,6 +1082,12 @@ ins_right {
 }
 
 ins_right {
+  'filetype',
+  icons_enabled = true,
+  color = { fg = colors.green, gui = 'bold' },
+}
+
+ins_right {
   'branch',
   icon = '',
   color = { fg = colors.violet, gui = 'bold' },
@@ -1105,14 +1103,6 @@ ins_right {
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
-}
-
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
 }
 
 -- Now don't forget to initialize lualine
