@@ -157,6 +157,9 @@ require('lazy').setup({
   'nvim-neo-tree/neo-tree.nvim',
   'nvim-tree/nvim-web-devicons',
   'MunifTanjim/nui.nvim',
+  'romgrk/barbar.nvim',
+  'lewis6991/hover.nvim',
+  'lewis6991/gitsigns.nvim',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -663,7 +666,7 @@ require('lazy').setup({
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
           --['<Tab>'] = cmp.mapping.select_next_item(),
           --['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
@@ -860,6 +863,36 @@ vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', "'", "''<Left>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ee', ':Neotree toggle<CR>', { noremap = true, silent = true })
+
+-- barbar.nvim remap config
+vim.api.nvim_set_keymap('n', '<leader>pp', '<Cmd>BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>nn', '<Cmd>BufferNext<CR>', { noremap = true, silent = true })
+
+-- go to buffers in position
+vim.api.nvim_set_keymap('n', '<leader>f1', '<Cmd>BufferGoto 1<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f2', '<Cmd>BufferGoto 2<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f3', '<Cmd>BufferGoto 3<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f4', '<Cmd>BufferGoto 4<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f5', '<Cmd>BufferGoto 5<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f6', '<Cmd>BufferGoto 6<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f7', '<Cmd>BufferGoto 7<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f8', '<Cmd>BufferGoto 8<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f9', '<Cmd>BufferGoto 9<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f0', '<Cmd>BufferLast<CR>', { noremap = true, silent = true })
+
+-- close buffer
+vim.api.nvim_set_keymap('n', '<leader>ww', '<Cmd>BufferClose<CR>', { noremap = true, silent = true })
+
+-- close all buffers
+vim.api.nvim_set_keymap('n', '<leader>aa', '<Cmd>BufferCloseAll<CR>', { noremap = true, silent = true })
+
+-- restore last buffer
+vim.api.nvim_set_keymap('n', '<leader>bb', '<Cmd>BufferRestore<CR>', { noremap = true, silent = true })
+
+-- Magic buffer picking modes
+vim.api.nvim_set_keymap('n', '<C-p>', '<Cmd>BufferPick<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-p>', '<Cmd>BufferPickDelete<CR>', { noremap = true, silent = true })
 
 -- Lualine config from below
 -- Eviline config for lualine
