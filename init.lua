@@ -160,6 +160,10 @@ require('lazy').setup({
   'romgrk/barbar.nvim',
   'lewis6991/hover.nvim',
   'lewis6991/gitsigns.nvim',
+  'neovim/nvim-lspconfig',
+  'jose-elias-alvarez/null-ls.nvim',
+  'MunifTanjim/nui.nvim',
+  'MunifTanjim/prettier.nvim',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -590,7 +594,7 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -846,13 +850,14 @@ require('lazy').setup({
 
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<C-s>', ':w<CR>')
+vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
 
 vim.cmd [[colorscheme rose-pine]]
 --vim.g.material_style = 'deep ocean'
---vim.cmd 'highlight Normal guibg=none ctermbg=none'
---vim.cmd 'highlight EndOfBuffer guibg=none ctermbg=none'
---vim.cmd 'highlight NormalFloat guibg=none ctermbg=none'
-
+vim.cmd 'highlight Normal guibg=none ctermbg=none'
+vim.cmd 'highlight EndOfBuffer guibg=none ctermbg=none'
+vim.cmd 'highlight NormalFloat guibg=none ctermbg=none'
+vim.cmd 'highlight FloatBorder guibg=none ctermbg=none'
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
@@ -1154,5 +1159,25 @@ require('nvim-ts-autotag').setup {
       enable_close = false,
     },
   },
-  did_setup = false,
+}
+
+-- prettier setup
+local prettier = require 'prettier'
+
+prettier.setup {
+  bin = 'prettier',
+  filetypes = {
+    'css',
+    'graphql',
+    'html',
+    'javascript',
+    'javascriptreact',
+    'json',
+    'less',
+    'markdown',
+    'scss',
+    'typescript',
+    'typescriptreact',
+    'yaml',
+  },
 }
