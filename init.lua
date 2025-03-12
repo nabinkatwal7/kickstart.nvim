@@ -967,3 +967,8 @@ prettier.setup {
     'yaml',
   },
 }
+
+-- lualine setup
+require('lualine').setup {
+  options = { theme = 'wombat' },
+}
