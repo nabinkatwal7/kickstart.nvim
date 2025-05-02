@@ -721,7 +721,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'default'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -852,7 +852,7 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<C-s>', ':w<CR>')
 vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
 
-vim.cmd [[colorscheme rose-pine]]
+--vim.cmd [[colorscheme rose-pine]]
 --vim.g.material_style = 'deep ocean'
 vim.cmd 'highlight Normal guibg=none ctermbg=none'
 vim.cmd 'highlight EndOfBuffer guibg=none ctermbg=none'
